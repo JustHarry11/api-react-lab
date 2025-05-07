@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react";
 import { Link } from 'react-router'
-
-import { getAllMovies } from "../../services/movies";
+import useFetch from "../../hooks/useFetch";
+import { getAllMovies } from '../../services/movies';
 
 export default function MovieIndex(){
-    const [movies, setMovies] = useState([])
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        async function getMovies() {
-            try {
-                const { data } = await getAllMovies()
-                setMovies(data)
-            } catch {
-                setError('Failed to fetch activity data. Please try again later.')
-            } finally {
-                setLoading(false)
-            }
-        }
-        getMovies()
-    }, [])
+    const { data: movies, isLoading, error} = useFetch(getAllMovies, [])
 
     return (
         <>
@@ -28,7 +12,7 @@ export default function MovieIndex(){
             <section className="movie-list">
                 {error
                     ?<p className="error-message">{error}</p>
-                    : loading  
+                    : isLoading  
                         ? <p>Loading...</p>
                         : movies.length > 0
                             ? movies.map(movie => (

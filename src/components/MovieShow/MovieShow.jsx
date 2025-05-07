@@ -1,41 +1,33 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { getSingleMovie } from "../../services/movies";
+import useFetch from "../../hooks/useFetch";
+
+import MovieDelete from '../MovieDelete/MovieDelete'
 
 export default function MovieShow(){
-    const [movie, setMovie] = useState({})
-    const [error, setError] = useState('')
-    const [loading, setLoading] = useState(true)
 
     const { movieId } = useParams()
 
-    useEffect(() => {
-        async function getMovie() {
-            try {
-                const { data } = await getSingleMovie(movieId)
-                setMovie(data)
-            } catch (error) {
-                if(error.status === 400) {
-                    setError('Movie not found!')
-                } else {
-                    setError(error.message)
-                }
-            } finally {
-                setLoading(false)
-            } 
-        }
-        getMovie()
-    }, [movieId])
+    const { data: movie, isLoading, error } = useFetch(
+        getSingleMovie,
+        {},
+        movieId
+    )
 
     return (
         <>
             {error
                 ? <p className="error-message">{error}</p>
-                : loading
+                : isLoading
                     ? <p>Loading ...</p>
                     : (
                         <section className="single-activity">
                             <h1>{movie.title}</h1>
+                            <h2>{movie.director}</h2>
+                            <h2>{movie.year}</h2>
+                            <h2>{movie.rating}</h2>
+                            <Link to={`/movies/${movieId}/edit`}>Edit</Link>
+                            <MovieDelete />
                         </section>
                     )}
         </>

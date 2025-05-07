@@ -22,3 +22,31 @@ export const getSingleMovie = async (movieId) => {
     }
 }
 
+export const createMovie = async (formData) => {
+    try {
+        return axios.post(`${BASE_URL}/movies`, formData)
+    } catch (error) {
+        console.log(error)
+        throw error
+        
+    }
+}
+
+export const updateMovie = async (movieId, formData) => {
+    try {
+        return axios.put(`${BASE_URL}/movies/${movieId}`, formData)
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const deleteMovie = async (movieId) => {
+    try {
+        return axios.delete(`${BASE_URL}/movies/${movieId}`)
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
