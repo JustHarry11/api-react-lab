@@ -10,6 +10,8 @@ export default function NavBar(){
             <nav>
                 <NavLink to="/movies">Movies</NavLink>
                 <NavLink to="/movies/new">Add Movie</NavLink>
+                <NavLink to="/register">Create User</NavLink>
+                <NavLink to="/login">Log In</NavLink>
             </nav>
         </header>
     )

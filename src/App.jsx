@@ -6,6 +6,8 @@ import MovieIndex from './components/MovieIndex/MovieIndex'
 import MovieShow from './components/MovieShow/MovieShow'
 import MovieCreate from './components/MovieCreate/MovieCreate'
 import MovieUpdate from './components/MovieUpdate/MovieUpdate'
+import UserCreate from './components/UserCreate/UserCreate'
+import UserLogin from './components/UserLogin/UserLogin'
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/movies/:movieId" element={< MovieShow />}/>
         <Route path="/movies/new" element={<MovieCreate />}/>
         <Route path="/movies/:movieId/edit" element={<MovieUpdate />}/>
+        <Route path="/register" element={<UserCreate />}/>
+        <Route path="/login" element={<UserLogin />}/>
      </Routes>
     </>
   )
