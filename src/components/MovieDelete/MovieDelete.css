@@ -1,0 +1,43 @@
+.confirm-delete.hide {
+    display: none;
+  }
+  
+  .confirm-delete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .confirm-delete .delete-box {
+    text-align: center;
+    padding: 2rem;
+    background: black;
+    width: 350px;
+    border-radius: 18px;
+  }
+  
+  .confirm-delete .delete-box .button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .confirm-delete .delete-box button {
+    display: block;
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 1rem .25rem 0;
+  }
+  
+  .confirm-delete .delete-box button.delete {
+    background-color: rgb(189, 67, 67);
+  }

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import { createUser } from "../../services/movies";
+import { Link, useNavigate } from "react-router";
+import { createUser } from "../../services/auth";
 import Spinner from "../Spinner/Spinner";
 import './UserCreate.css'
 
@@ -22,9 +22,8 @@ export default function UserCreate() {
         evt.preventDefault()
         setIsLoading(true)
         try {
-            const { data } = await createUser(userData)
-            console.log(data)
-            navigate(`/movies`)
+            await createUser(userData)
+            navigate(`/login`)
         } catch (error) {
             setError(error.response.data)
             console.log(error.response.data)
@@ -72,6 +71,7 @@ export default function UserCreate() {
 
 
                 <button type="submit">{isLoading ? <Spinner /> : 'Create User'}</button>
+                <small>Already have an account? <Link to="/login">Log back in</Link></small>
             </form>
         </section>
     )

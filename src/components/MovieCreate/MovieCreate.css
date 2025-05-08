@@ -40,3 +40,8 @@
     border-radius: 0;
     font-weight: bold;
   }
+  .form small {
+    text-align: center;
+    margin: 1rem auto;
+    display: block;
+  }

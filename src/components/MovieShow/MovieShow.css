@@ -1,0 +1,36 @@
+.single-activity {
+    text-align: center;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .controls a, .controls button {
+    height: 40px;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-activity {
+    background-color: #646cff;
+    color: #fff;
+  }
+  .edit-activity:hover {
+    background-color: #5157d1;
+    color: #fff;
+  }
+  
+  .delete-activity {
+    background-color: rgb(184, 64, 64);
+  }
+  
+  .delete-activity:hover {
+    background-color: rgb(143, 48, 48);
+  }

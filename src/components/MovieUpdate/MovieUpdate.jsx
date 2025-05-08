@@ -76,6 +76,9 @@ export default function MovieUpdate() {
                     {error.title && <p className="error-message">{error.title}</p>}
                 </div>
 
+                {error.message && <p className="error-message">{error.message}</p>}
+                {error.preload && <p className="error-message">{error.preload}</p>}
+
                 <button type="submit">{isLoading ? <Spinner /> : 'Update Movie'}</button>
             </form>
         </section>

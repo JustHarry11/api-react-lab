@@ -1,11 +1,16 @@
-import { useState } from "react"
-import { loginUser } from "../../services/movies"
-import { useNavigate } from "react-router";
+import { useContext, useState } from "react"
+import { loginUser } from "../../services/auth";
+import { Link, useNavigate } from "react-router";
+import { setToken, getUserFromToken } from "../../utilities/auth";
+import { UserContext } from "../../contexts/UserContext";
 import Spinner from "../Spinner/Spinner";
 import './UserLogin.css'
 
 
 export default function UserLogin() {
+
+    const { setUser } = useContext(UserContext)
+
     const [userData, setUserData] = useState({
         email: '',
         password: ''
@@ -21,7 +26,8 @@ export default function UserLogin() {
         setIsLoading(true)
         try {
             const { data } = await loginUser(userData)
-            localStorage.setItem('movieDB.token', data.token)
+            setToken(data.token)
+            setUser(getUserFromToken())
             navigate(`/movies`)
         } catch (error) {
             setError(error.response.data)
@@ -54,10 +60,12 @@ export default function UserLogin() {
                         {error.password && <p className="error-message">{error.password}</p>}
                     </div>
     
+                    { error.message && <p className="error-message">{error.message}</p> }
+    
+    
+                    <button type="submit">{ isLoading ? <Spinner />: 'Log In'}</button>
 
-    
-    
-                    <button type="submit">{ isLoading ? <Spinner />: 'Create User'}</button>
+                    <small>Don't have an account? <Link to="/register">Register here</Link></small>
                 </form>
             </section>
         )
