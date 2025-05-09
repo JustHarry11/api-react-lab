@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate, Navigate } from "react-router";
 import { getSingleMovie, updateMovie } from "../../services/movies";
 import Spinner from "../Spinner/Spinner";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function MovieUpdate() {
+
+    const { user } = useContext(UserContext)
+
     const [formData, setFormData] = useState({
         title: '',
         director: '',
@@ -46,6 +50,12 @@ export default function MovieUpdate() {
         }
         getMovieData()
     }, [movieId])
+
+    // * Before rendering the form page, check if user is logged in, navigating them away if not
+    if (!user) {
+        return <Navigate to="/login" />
+    }
+
 
     return (
         <section id="form-page">

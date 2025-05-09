@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useState, useContext } from "react";
+import { Link, useNavigate, Navigate } from "react-router";
 import { createUser } from "../../services/auth";
+import { UserContext } from "../../contexts/UserContext";
 import Spinner from "../Spinner/Spinner";
 import './UserCreate.css'
 
 export default function UserCreate() {
+
+    const { user } = useContext(UserContext)
+
     const [userData, setUserData] = useState({
         email: '',
         username: '',
@@ -39,6 +43,9 @@ export default function UserCreate() {
         setError({ ...error, [evt.target.name]: '' })
     }
 
+    if (user) {
+        return <Navigate to="/" />
+    }
     return (
         <section id="form-page">
             <form className="form" onSubmit={handleSubmit}>

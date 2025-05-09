@@ -33,7 +33,7 @@ export default function MovieShow() {
                             <h2>{movie.director}</h2>
                             <h2>{movie.year}</h2>
                             <h2>{movie.rating}</h2>
-                            {user &&
+                            {user && user._id === movie.owner  &&
                                 <div className="controls">
                                     <Link className="edit-movie" to={`/movies/${movieId}/edit`}>Edit</Link>
                                     <MovieDelete />

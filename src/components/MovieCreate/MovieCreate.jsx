@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState, useContext } from "react";
+import { useNavigate, Navigate } from "react-router";
 import './MovieCreate.css'
 import { createMovie } from "../../services/movies";
 import Spinner from "../Spinner/Spinner";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function MovieCreate(){
+
+    const { user } = useContext(UserContext)
 
     const [formData, setFormData] = useState({
         title: '',
@@ -35,6 +38,10 @@ export default function MovieCreate(){
         const copiedObject = { ...formData }
         copiedObject[evt.target.name] = evt.target.value
         setFormData(copiedObject)
+    }
+
+    if (!user) {
+        return <Navigate to="/login" />
     }
 
     return (
